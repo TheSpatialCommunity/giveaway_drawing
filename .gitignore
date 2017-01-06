@@ -1,3 +1,8 @@
+# Custom
+src/slack_config.py
+*.sln
+*.pyproj
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
