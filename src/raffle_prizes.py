@@ -14,15 +14,13 @@ def get_channel_members(channel, token):
 	# return the user name and their ID
 	return user_ids
 
-def get_user_status (user, token):
+def get_user_name (user_id, token):
 	""" check if user is active. looks like if the user is not found it is inactive.
 	i tested with user ID "T06QBQ0DV" (known inactive and i get "no such user" error)
-		https://slack.com/api/users.profile.get?token=XYZ&user=XYZ"""
-	for u in user:
-		if "is_found":
-			return True
-		else:
-			return False
+		https://slack.com/api/users.info?token=XYZ&user=XYZ"""
+	user_name = ""
+	#get user name from the winning ID
+	return user_name
 	
 def main():
 	""" 
