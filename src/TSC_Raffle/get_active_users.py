@@ -16,7 +16,8 @@ def get_active_users(path_to_csv=None,
 
     data = get_json_data(url=url, params=params)
     for member in data["members"]:
-        member_list[member["name"]] = member["id"]
+        if "is_admin" in member.keys() and member["is_admin"] == False:
+            member_list[member["name"]] = member["id"]
 
     df = pd.read_csv(path_to_csv)
     cols = df.columns

@@ -37,9 +37,10 @@ def run_raffle(channel=None, count=0, member_csv=None):
     
     print("\nThe winners are...")
     for i, winner in enumerate(TSC_Raffle.choose_winners(raffle_pool=cleaned_raffle_pool, draw_winner_count=count)):
-        print("{0} - {1}".format(i+1, winner))
+        print("  {0} - {1}".format(i+1, winner))
+
+    print("\n")
 
 if __name__ == "__main__":
     print("\nThe Spatial Community - Raffle Draw\n")
     run_raffle()
-    print("\n")
