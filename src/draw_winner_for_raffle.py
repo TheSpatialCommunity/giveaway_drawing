@@ -6,7 +6,7 @@ import TSC_Raffle
 @click.command()
 @click.option('--channel', type=click.Choice(config["channels"].keys()), prompt="The channel name to use for the raffle pool", help="The name of the channel to pull the user list from for the raffle")
 @click.option('--count', prompt="Number of winners to choose?", default=1, help="The number of winners to choose from the pool")
-@click.option('--member_csv', prompt="Path to the billing csv", help="The path to the billing csv from Slack")
+@click.option('--member_csv', prompt="Path to the members list csv", help="The path to the members list csv from Slack")
 def run_raffle(channel=None, count=0, member_csv=None):
     """ 
         The Spatial Community - Draw Winner(s) for Raffle
@@ -21,9 +21,9 @@ def run_raffle(channel=None, count=0, member_csv=None):
     channel_id = config["channels"][channel]
     print("Channel:          #{0} [{1}]".format(channel, channel_id))
     print("# of Winners:     {0}".format(count))
-    print("Billing CSV Path: {0}".format(member_csv))
+    print("Members List CSV Path: {0}".format(member_csv))
 
-    print("\nReading user list from billing csv")
+    print("\nReading user list from members list csv")
     active_users = TSC_Raffle.get_active_users(path_to_csv=member_csv, token=config["slack_token"])
     print("{} active users in The Spatial Community".format(len(active_users)))
 
@@ -33,7 +33,7 @@ def run_raffle(channel=None, count=0, member_csv=None):
 
     print("\nFiltering inactive users from raffle pool")
     cleaned_raffle_pool = TSC_Raffle.clean_raffle_pool(active_users=active_users, channel_members=channel_members)
-    print("{} elible members in the raffle".format(len(cleaned_raffle_pool.keys())))
+    print("{} eligible members in the raffle".format(len(cleaned_raffle_pool.keys())))
     
     print("\nThe winners are...")
     for i, winner in enumerate(TSC_Raffle.choose_winners(raffle_pool=cleaned_raffle_pool, draw_winner_count=count)):
