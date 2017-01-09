@@ -1,14 +1,14 @@
 from random import choice
 
-def choose_winners(raffle_pool=None, draw_winner_count=0):
+def choose_winners(giveaway_pool=None, draw_winner_count=0):
     """
-        Choose Winners from raffle pool
+        Choose Winners from giveaway pool
     """
     winners = []
 
     while len(winners) < draw_winner_count:
-        winner = choice(raffle_pool.keys())
-        winner = raffle_pool[winner]
+        winner = choice(giveaway_pool.keys())
+        winner = giveaway_pool[winner]
         if winner not in winners: # Don't allow someone to win twice
             winners.append(winner)
 
